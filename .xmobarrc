@@ -1,0 +1,33 @@
+Config {font = "xft:dejavu Sans Mono:size=7.5:antialias=true"
+	   , alpha = 0
+       , bgColor = "black"
+       , fgColor = "grey"
+	   , border = NoBorder
+	   , borderColor = "grey"
+	   , pickBroadest = False
+	   , overrideRedirect = False
+	   , allDesktops = True
+       , position = TopW L 90
+       , lowerOnStart = True
+	   , hideOnStart = False
+	   , persistent = False
+       , commands = [ Run Weather "EDDM" [ "-t", "<tempC>C"
+					    				 , "-L", "18"
+					    				 , "-H", "25"
+					    				 , "--normal" ,"green"
+					    				 , "--high", "red"
+           			    				 , "--low", "lightblue"] 6000
+                     ,Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run BatteryP ["BAT0"]
+								   ["t", "<acstatus><watts> (<left>%)",
+								    "-L", "10", "-H", "80", "-p", "3",
+									"--", "-O", "<fc=green>On</fc> - ", "-o", "",
+								    "-L", "15", "-H", "-5",
+								    "-l", "red", "-m", "blue", "-h", "green"] 500
+					, Run Com "/opt/volume.sh" [] "volume" 1
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "  %StdinReader% }  <fc=#ee9a00>%date%</fc> {♫%volume%♫ | %battery% | %EDDM%"
+       }
