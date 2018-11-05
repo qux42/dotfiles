@@ -1,0 +1,3 @@
+[submodule ".vim/pack/plugins/start/suda.vim"]
+	path = .vim/pack/plugins/start/suda.vim
+	url = https://github.com/lambdalisue/suda.vim.git
