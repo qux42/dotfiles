@@ -1,0 +1,9 @@
+#compdef _kube_namespaces k8_set_namespace
+_kube_namespaces() {
+	local kubectl_out template
+	template="{{ range .items  }}{{ .metadata.name }} {{ end }}"
+	if kubectl_out=($(kubectl get -o template --template="${template}" namespace 2>/dev/null)); then
+		compadd  -a kubectl_out
+	fi
+}
+

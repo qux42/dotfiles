@@ -1,0 +1,7 @@
+#compdef _kube_contexts mcs_tunnel k8_set_context
+_kube_contexts() {
+	local kubectl_out
+	if kubectl_out=($( kubectl config get-contexts -o name 2>/dev/null )); then
+		compadd -a  kubectl_out 
+	fi
+}
