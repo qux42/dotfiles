@@ -1,0 +1,9 @@
+geometry 9x1-0+0
+grow_gravity E
+background "#282a36"
+slot_size 17
+icon_size 17
+icon_gravity E
+transparent true
+
+
