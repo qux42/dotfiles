@@ -10,7 +10,7 @@ if [[ $PROFILING >0 ]]; then
 fi
 
 ##########################################################################
-# 
+#
 ##########################################################################
 autoload -U promptinit && promptinit
 if prompt -l | grep -q samuel ; then
@@ -41,22 +41,18 @@ for file ($_custom_zsh_config_base/.zsh/*.zsh(N)); do
 	source $file
 done
 
-## do a cd if the written text in the cli is not a command but is a dir
-setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS
-#
-#
-## complete not just at the end  
+## complete not just at the end
 setopt complete_in_word
 #
 #
 #
 #
 ## print a errormessage when commands dosent match any files (echo hund*)
-setopt no_match 
-### print a error message when in case of errorous patterns like: echo [-         
-setopt bad_pattern 
+setopt no_match
+### print a error message when in case of errorous patterns like: echo [-
+setopt bad_pattern
 ### X='*' echo $x                   <-- i would see all files if thise were on
-unsetopt glob_subst 
+unsetopt glob_subst
 unsetopt ksh_glob             # i dont do korn shell
 unsetopt ksh_arrays           # i dont do korn shell
 unsetopt ksh_autoload         # i dont do korn shell
@@ -66,9 +62,9 @@ setopt no_check_jobs        # don't warn me about background processes when exit
 setopt no_hup               # don't kill background processes when exiting
 unsetopt rm_star_silent       # warn me when i do rm *
 ### dont lower the priority of processes i send to the background
-unsetopt bg_nice   
-###dont spam console when bg-processes finish, show the message on return or ctrl-c   
-unsetopt notify       
+unsetopt bg_nice
+###dont spam console when bg-processes finish, show the message on return or ctrl-c
+unsetopt notify
 unsetopt globdots             # rm * should not remove .somefile
 unsetopt csh_junkie_history   # i dont do c shell
 unsetopt csh_junkie_loops     # i dont do c shell
@@ -91,3 +87,29 @@ fi
 fpath=(~/.zsh $fpath)
 
 . /usr/share/z/z.sh
+
+# restore terminal state after exiting a program
+ttyctl -f
+
+
+
+cdUndoKey() {
+  popd
+  zle       reset-prompt
+  echo
+  ls
+  zle       reset-prompt
+}
+
+cdParentKey() {
+  pushd ..
+  zle      reset-prompt
+  echo
+  ls
+  zle       reset-prompt
+}
+
+zle -N                 cdParentKey
+zle -N                 cdUndoKey
+bindkey '^[^[[D'      cdParentKey
+bindkey '^[^[[C'      cdUndoKey
