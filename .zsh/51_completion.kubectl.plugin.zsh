@@ -8,3 +8,5 @@ completed_callback() {
 
 async_register_callback kubectl_worker completed_callback
 async_job kubectl_worker sleep 1
+
+

@@ -1,4 +1,3 @@
-bindkey -e
 
 ##########################################################################
 # Profiling slow zsh-startup
@@ -8,7 +7,42 @@ PROFILING=0
 if [[ $PROFILING >0 ]]; then
   zmodload zsh/zprof
 fi
+#########################################################################
+bindkey -e
 
+bindkey -M viins  'jj' vi-cmd-mode
+bindkey -M vicmd  '^[[8~' end-of-line
+bindkey -M vicmd  '^[[7~' beginning-of-line
+bindkey -M vicmd  '^[[3~' delete-char
+bindkey -M vicmd  '^?' backward-delete-char
+
+bindkey -M viins '^[.' insert-last-word
+bindkey -M viins "^[0" digit-argument
+bindkey -M viins "^[1" digit-argument
+bindkey -M viins "^[2" digit-argument
+bindkey -M viins "^[3" digit-argument
+bindkey -M viins "^[4" digit-argument
+bindkey -M viins "^[5" digit-argument
+bindkey -M viins "^[6" digit-argument
+bindkey -M viins "^[7" digit-argument
+bindkey -M viins "^[8" digit-argument
+bindkey -M viins "^[9" digit-argument
+bindkey -M viins "^[^M" self-insert-unmeta
+
+
+
+
+
+## backspace and ^h working even after
+## returning from command mode
+#bindkey '^?' backward-delete-char
+#bindkey '^h' backward-delete-char
+
+## ctrl-w removed word backwards
+#bindkey '^w' backward-kill-word
+
+## ctrl-r starts searching history backward
+#bindkey '^r' history-incremental-search-backward
 ##########################################################################
 #
 ##########################################################################
@@ -72,12 +106,6 @@ unsetopt csh_null_glob        # i dont do c shell
 unsetopt csh_junkie_quotes    # i dont do c shell
 #
 
-##########################################################################
-# Profiling slow zsh-startup
-##########################################################################
-if [[ $PROFILING >0 ]]; then
-  zprof
-fi
 
 ##########################################################################
 #  was set before but i think i don't need it!
@@ -113,3 +141,10 @@ zle -N                 cdParentKey
 zle -N                 cdUndoKey
 bindkey '^[^[[D'      cdParentKey
 bindkey '^[^[[C'      cdUndoKey
+
+##########################################################################
+# Profiling slow zsh-startup
+##########################################################################
+if [[ $PROFILING >0 ]]; then
+  zprof
+fi

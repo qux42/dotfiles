@@ -1,7 +1,7 @@
 # vim: ft=zsh ts=2 sw=2
 
 ########################################################################################################
-# Initialize completions 
+# Initialize completions
 ########################################################################################################
 # set path for own completions
 fpath=(~/.zsh/completion $fpath)
@@ -17,7 +17,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' use-cache on
 
 ########################################################################################################
-# 
+#
 ########################################################################################################
 zstyle ':completion:*:sudo:*' command-path  /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
@@ -47,11 +47,13 @@ zstyle ':completion:*'        select-prompt %SScrolling active: current selectio
 zstyle ':completion:*' special-dirs true
 
 ########################################################################################################
-# enable approximate matches for completion 
+# enable approximate matches for completion
 ########################################################################################################
-zstyle ':completion:::::' completer _expand _complete _ignored _approximate 
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate
 
 ########################################################################################################
 # completion for kill
 ########################################################################################################
 zstyle ':completion:*:processes' command 'ps -au$USER | uniq'
+
+setopt auto_cd
