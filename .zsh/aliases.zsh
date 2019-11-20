@@ -1,8 +1,9 @@
 # praktische aliase
-alias feh='feh --scale-down --geometry 1360x1024 --magick-timeout 2'
+alias feh='feh --scale-down --geometry 1360x1024 --magick-timeout 2 --auto-rotate --image-bg #151515'
 alias vim='nvim -p'
 alias vgit='vim -c Gstatus'
 alias cats='pygmentize -g -O colorful'
+#alias az='docker run -v  ${HOME}:/root microsoft/azure-cli az'
 
 alias reboot='systemctl reboot'
 alias halt='systemctl poweroff'
@@ -16,14 +17,14 @@ alias du1='/usr/bin/du -h -c  --max-depth=1 | sort -h'
 alias du='/usr/bin/du -h -c  --max-depth=0  * | sort -h'
 alias diff='colordiff'
 alias mkdir='mkdir -p -v'
-alias pg='ps -Af | grep $1'
+alias pg="ps -Af | grep $1"
 alias 'dirs'='dirs -v'
 alias 'passc'='pass -c'
 alias  'anki'='anki -b ~/.anki'
 # safety features
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'                    
+alias rm='rm -I'
 alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -60,13 +61,7 @@ alias la='ls -la --color=auto'
 alias llh='ls -lh --color=auto'
 alias lah='ls -lah --color=auto'
 
-# most
-if (which most > /dev/null) ; then
-	export PAGER='most'
-	alias mountlm='mount -l | column -t | most'
-else
-	export PAGER='less'
-fi
+export PAGER='less'
 
 #colored manual
 man() {

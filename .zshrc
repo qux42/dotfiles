@@ -30,6 +30,7 @@ bindkey -M viins "^[9" digit-argument
 bindkey -M viins "^[^M" self-insert-unmeta
 
 
+PATH=$PATH:~/.local/bin:~/.cabal/bin
 
 
 
@@ -148,3 +149,5 @@ bindkey '^[^[[C'      cdUndoKey
 if [[ $PROFILING >0 ]]; then
   zprof
 fi
+
+

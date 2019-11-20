@@ -1,3 +1,15 @@
 [submodule ".vim/pack/plugins/start/suda.vim"]
 	path = .vim/pack/plugins/start/suda.vim
 	url = https://github.com/lambdalisue/suda.vim.git
+[submodule ".vim/pack/plugins/start/nerdcommenter"]
+	path = .vim/pack/plugins/start/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule ".vim/pack/plugins/start/nerdtree"]
+	path = .vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/pack/plugins/start/vim-fugitive"]
+	path = .vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/pack/plugins/start/Jenkinsfile-vim-syntax"]
+	path = .vim/pack/plugins/start/Jenkinsfile-vim-syntax
+	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git

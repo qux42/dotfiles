@@ -9,7 +9,7 @@ import Data.Map    (fromList)
 import Data.Monoid (mappend)
 import XMonad.Util.EZConfig
 import XMonad.Actions.CycleWindows
-import XMonad.Actions.CycleWS 
+import XMonad.Actions.CycleWS
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.GridSelect
 import XMonad.Layout.ThreeColumns
@@ -36,7 +36,7 @@ myConfig = baseConfig
   , normalBorderColor   = "#222430"
   , layoutHook          = layout'
   , keys = keys def `mappend`
-    \c -> fromList 
+    \c -> fromList
     [ ((0, 0x1008FF13), spawn "pactl set-sink-mute 0 0 && pactl set-sink-volume 0 +1%")
     , ((0, 0x1008FF12), spawn "pactl set-sink-mute 0 toggle")
     , ((0, 0x1008FF11), spawn "pactl set-sink-mute 0 0 && pactl set-sink-volume 0 -1%")
@@ -46,9 +46,10 @@ myConfig = baseConfig
     ]
   } `additionalKeysP` myKeysP
 
-myKeysP = 
+myKeysP =
   [ ("M-c",         spawn "google-chrome-stable")
-  , ("M-p",         spawn "exe=`/home/samuele/.cabal-sandbox/bin/yeganesh -x` && eval exec $exe" )
+  , ("M-v",         spawn "clipmenu")
+  , ("M-p",         spawn "exe=`/home/samuele/.local/bin/yeganesh -x` && eval exec $exe" )
   , ("M-S-l",       spawn "slock")
   , ("M-<Tab>",     prevScreen)
   , ("M-S-<Tab>",   nextScreen)
@@ -57,7 +58,7 @@ myKeysP =
   , ("M-S-<Right>", shiftToNext)
   , ("M-S-<Left>",  shiftToPrev)
   ]
-    
+
 layout' = avoidStruts (smartBorders (tiled ||| Mirror tiled ||| Full ))
           where
             tiled = Tall nmaster delta ratio

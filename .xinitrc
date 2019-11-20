@@ -9,7 +9,8 @@ fi
 
 # pulseaudio-tray
 if [ -x /bin/pasystray ] ; then
-  pasystray &
+#  pasystray &
+  pa-applet &
 fi
 
 if [ -x /usr/bin/urxvtd ] ; then
@@ -26,33 +27,32 @@ fi
 
 # starting xautolock
 if [ -x /usr/bin/xautolock ] ; then
-        xautolock -time 5 -locker "xset dpms force off & slock" -notify 60 -notifier "notif
-y-send 'Locking in 1 Minute'" -corners ---- &
+  xautolock -time 5 -locker "xset dpms force off & slock" -notify 60 -notifier "notif
+  y-send 'Locking in 1 Minute'" -corners ---- &
 fi
 
 # starting redshift
 if [ -x /usr/bin/redshift-gtk ] ; then
-        redshift-gtk &
+  redshift-gtk &
 fi
 
 if [ $comands[fbsetroot] ] ; then
-        fbsetroot -solid '#282a36'
+  fbsetroot -solid '#282a36'
 fi
 
-# set up an icon tray
-#if [ -x /usr/bin/trayer ] ; then
-#  trayer --edge top --align right \
-#         --monitor primary \
-#         --width 20 --height 17 \
-#         --transparent true --alpha 0 \
-#	 --tint 0x282a3600 \
-#         --expand true &
-#fi
-
-if [ -x /bin/stalonetray ] ; then
-	stalonetray &
+if [ $comands[blueberry-tray] ] ; then
+  blueberry-tray &
 fi
 
+#set up an icon tray
+if [ -x /usr/bin/trayer ] ; then
+  trayer --edge top --align right \
+    --monitor primary \
+    --width 7 --height 17 \
+    --transparent true --alpha 0 \
+    --tint 0x00282a36 \
+    --expand true &
+fi
 
 xinput disable 12
-exec xmonad
+exec /home/samuele/.cabal/bin/xmonad

@@ -1,21 +1,16 @@
 set mouse=a
 
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
-call plug#end()
-
-
+" ======== fugitive settings ===================================== {{{
 command! Gstatus call LazyLoadFugitive('Gstatus')
 command! Gdiff call LazyLoadFugitive('Gdiff')
 command! Glog call LazyLoadFugitive('Glog')
 command! Gblame call LazyLoadFugitive('Gblame')
 
 function! LazyLoadFugitive(cmd)
-  call plug#load('vim-fugitive')
   call fugitive#detect(expand('%:p'))
   exe a:cmd
 endfunction
-
+" }}}
 
 
 
@@ -72,7 +67,9 @@ set undolevels=1000
 set listchars=tab:\ \ ,trail:·
 set list
 
-let g:mapleader = ','
+nnoremap <Space> <Nop>
+let mapleader = ' '
+
 
 set path+=**
 set undofile
@@ -80,6 +77,7 @@ set undofile
 " Map for Escape key
 inoremap jj <Esc>
 tnoremap <LEADER>jj <C-\><C-n>
+inoremap <Esc> <Nop>
 
 " Yank to the end of the line
 nnoremap Y y$
@@ -152,3 +150,16 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+
+" Open nerdtree if no file is specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Open nerdtree if dir is specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd p | endif
+
+map <C-n> :NERDTreeToggle<CR>
+
+

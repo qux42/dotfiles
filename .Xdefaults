@@ -81,7 +81,8 @@ URxvt.iso14755: FALSE
 URxvt.iso14755_52: FALSE
 
 ! Extensions
-URxvt.perl-ext-common: default,font-size,keyboard-select,selection-to-clipboard,matcher
+!URxvt.perl-ext-common: default,font-size,keyboard-select,selection-to-clipboard,matcher
+URxvt.perl-ext-common: default,font-size,keyboard-select,matcher
 #,tabbed
 
 ! change font size
@@ -118,7 +119,7 @@ URxvt.url-launcher: chrome
 #URxvt.tabbed.tab-bg: 0
 #URxvt.tabbed.secondaryScroll: true
 
-! neo numpad 
+! neo numpad
 !URxvt.keysym.KP_Add:    +
 !URxvt.keysym.KP_Subtract: -
 !URxvt.keysym.KP_Multiply: *
